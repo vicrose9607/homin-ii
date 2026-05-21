@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homin_ii — どんな自分も受け入れる場</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    /* ---- Reset & Base ---- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+      background: #f5f4f0;
+      color: #2d2d2d;
+      line-height: 1.8;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ---- Header ---- */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(245, 244, 240, 0.94);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      height: 56px;
+      border-bottom: 1px solid #d0cec9;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      margin-right: auto;
+    }
+    .logo-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: #2d2d2d;
+    }
+    nav { display: flex; gap: 44px; }
+    nav a {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: #666;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: #2d2d2d; }
+
+    /* ---- Hero ---- */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/hero.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: saturate(0.55) brightness(1.3);
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(18, 15, 12, 0.24);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      color: #fff;
+      padding: 0 24px;
+    }
+    .hero-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(26px, 4.5vw, 52px);
+      font-weight: 200;
+      letter-spacing: 0.28em;
+      margin-bottom: 22px;
+      line-height: 1.2;
+    }
+    .hero-sub {
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      color: rgba(255, 255, 255, 0.65);
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 44px;
+      background: rgba(255, 255, 255, 0.35);
+      animation: scrollDown 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollDown {
+      0%   { opacity: 0; transform: scaleY(0); transform-origin: top; }
+      40%  { opacity: 1; }
+      100% { opacity: 0; transform: scaleY(1); transform-origin: top; }
+    }
+
+
+    /* ---- Shared section styles ---- */
+    .section-wrap { padding: 100px 40px; }
+    .section-label {
+      text-align: center;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      color: #999;
+      margin-bottom: 14px;
+    }
+    .section-rule {
+      width: 30px; height: 1px;
+      background: #bbb;
+      margin: 0 auto 64px;
+    }
+
+    /* ---- Vision ---- */
+    #vision {
+      padding: 120px 40px 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #vision::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.12;
+      z-index: 0;
+    }
+    #vision > * { position: relative; z-index: 1; }
+    .vision-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(20px, 2.8vw, 32px);
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      line-height: 2;
+      margin-bottom: 36px;
+    }
+    .vision-body {
+      font-size: 13px;
+      color: #444;
+      line-height: 2.4;
+      max-width: 520px;
+      margin: 0 auto 40px;
+      letter-spacing: 0.05em;
+    }
+    .vision-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: #555;
+      border-bottom: 1px solid #bbb;
+      padding-bottom: 4px;
+      transition: gap 0.25s, color 0.2s, border-color 0.2s;
+    }
+    .vision-more:hover {
+      gap: 18px;
+      color: #2d2d2d;
+      border-color: #2d2d2d;
+    }
+    .vision-more-arrow {
+      transition: transform 0.25s;
+    }
+    .vision-more:hover .vision-more-arrow {
+      transform: translateX(4px);
+    }
+
+    /* ---- Our Story ---- */
+    #our-story { padding: 80px 0; }
+    #our-story .section-label,
+    #our-story .section-rule { margin-left: auto; margin-right: auto; }
+    #our-story .section-label { padding: 0 40px; }
+
+    .story-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      max-width: 1060px;
+      margin: 0 auto 64px;
+    }
+    .story-pair:last-child { margin-bottom: 0; }
+
+    .story-img {
+      aspect-ratio: 5 / 4;
+      overflow: hidden;
+    }
+    /* 画像追加時: .story-img img { width:100%; height:100%; object-fit:cover; } */
+    .ph { width: 100%; height: 100%; display: block; }
+    .ph-warm    { background: linear-gradient(140deg, #8b7355 0%, #a08060 50%, #c4a882 100%); }
+    .ph-light   { background: linear-gradient(140deg, #b0a090 0%, #cec0a8 50%, #e4d8c8 100%); }
+    .ph-people  { background: linear-gradient(140deg, #7a6060 0%, #9a7a70 50%, #c0a090 100%); }
+    .ph-nature  { background: linear-gradient(140deg, #5a7a5a 0%, #7a9a6a 50%, #a8c090 100%); }
+    .ph-space   { background: linear-gradient(140deg, #606878 0%, #808898 50%, #b0b8c8 100%); }
+    .ph-evening { background: linear-gradient(140deg, #50404a 0%, #705868 50%, #9a8898 100%); }
+
+    .story-text { padding: 56px 72px; }
+    .story-text h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 19px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      margin-bottom: 18px;
+      line-height: 1.7;
+    }
+    .story-text p {
+      font-size: 13px;
+      color: #6a6a6a;
+      line-height: 2.4;
+      letter-spacing: 0.04em;
+    }
+    .story-pair.reverse .story-img { order: 1; }
+    .story-pair.reverse .story-text { order: 2; }
+
+    /* ---- Events ---- */
+    #events { background: #edecea; padding: 100px 0; }
+    #events .section-label,
+    #events .section-rule { padding: 0 40px; }
+    .carousel-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+    .event-card {
+      background: #fff;
+      padding: 36px 32px;
+      min-width: calc((100% - 120px) / 3);
+      margin: 0 10px;
+      flex-shrink: 0;
+      box-sizing: border-box;
+    }
+    .event-date {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: #aaa;
+      margin-bottom: 12px;
+    }
+    .event-title {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.7;
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+    .event-tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      border: 1px solid #ccc;
+      padding: 4px 12px;
+      color: #888;
+    }
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 44px;
+      padding: 0 40px;
+    }
+    .carousel-btn {
+      width: 40px; height: 40px;
+      border: 1px solid #bbb;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: #666;
+      transition: all 0.2s;
+    }
+    .carousel-btn:hover { background: #2d2d2d; color: #fff; border-color: #2d2d2d; }
+    .carousel-btn:disabled { opacity: 0.3; cursor: default; }
+    .carousel-btn:disabled:hover { background: transparent; color: #666; border-color: #bbb; }
+    .carousel-dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .carousel-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #ccc;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      border: none;
+      padding: 0;
+    }
+    .carousel-dot.active { background: #2d2d2d; transform: scale(1.2); }
+    .events-more {
+      text-align: center;
+      margin-top: 32px;
+      padding: 0 40px;
+    }
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid #aaa;
+      padding: 13px 44px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: #666;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { background: #2d2d2d; color: #fff; border-color: #2d2d2d; }
+
+    /* ---- Voices ---- */
+    #voices { padding: 60px 0; background: #cac7c2; }
+    #voices .section-label { color: #aaa; }
+    #voices .section-rule  { background: #ccc; }
+    .voices-track-wrap { overflow: hidden; width: 100%; }
+    .voices-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+    .voice-card {
+      flex-shrink: 0;
+      width: 100%;
+      padding: 0 10vw;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .voice-icon {
+      font-size: 48px;
+      color: rgba(0,0,0,0.1);
+      margin-bottom: 32px;
+      line-height: 1;
+    }
+    .voice-quote {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(18px, 2.5vw, 28px);
+      font-weight: 200;
+      line-height: 2;
+      color: #333;
+      letter-spacing: 0.12em;
+      margin-bottom: 48px;
+      max-width: 700px;
+    }
+    .voice-footer {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .voice-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .voice-info { display: flex; flex-direction: column; gap: 4px; text-align: left; }
+    .voice-name {
+      font-size: 13px;
+      font-weight: 400;
+      color: #555;
+      letter-spacing: 0.08em;
+    }
+    .voice-attr {
+      font-size: 10px;
+      color: #aaa;
+      letter-spacing: 0.12em;
+    }
+    .voices-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 56px;
+    }
+    .voice-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.2);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      padding: 0;
+    }
+    .voice-dot.active {
+      background: rgba(0,0,0,0.6);
+      transform: scale(1.4);
+    }
+    #voices .carousel-btn {
+      border-color: rgba(0,0,0,0.2);
+      color: rgba(0,0,0,0.4);
+    }
+    #voices .carousel-btn:hover {
+      background: rgba(0,0,0,0.06);
+      border-color: rgba(0,0,0,0.4);
+      color: rgba(0,0,0,0.8);
+    }
+
+    /* ---- ii_talk ---- */
+    #ii-talk {
+      background: #f5f0e8;
+      color: #2d2d2d;
+      text-align: center;
+      padding: 110px 40px;
+    }
+    #ii-talk .section-label { color: #aaa; }
+    #ii-talk .section-rule  { background: #ccc; }
+    .ii-talk-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(20px, 3vw, 34px);
+      font-weight: 200;
+      letter-spacing: 0.22em;
+      line-height: 1.8;
+      margin-bottom: 24px;
+      color: #2d2d2d;
+    }
+    .ii-talk-body {
+      font-size: 13px;
+      color: #888;
+      line-height: 2.4;
+      max-width: 480px;
+      margin: 0 auto 52px;
+      letter-spacing: 0.04em;
+    }
+    .btn-ghost {
+      display: inline-block;
+      border: 1px solid #aaa;
+      padding: 13px 48px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: #555;
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover {
+      background: #2d2d2d;
+      border-color: #2d2d2d;
+      color: #fff;
+    }
+
+    /* ---- Join ---- */
+    #join { padding: 100px 40px; }
+    .join-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .join-card {
+      background: #2e2b28;
+      color: #fff;
+      padding: 60px 44px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .join-card:hover { background: #1e1c1a; }
+    .join-card.light {
+      background: #cac7c2;
+      color: #2d2d2d;
+    }
+    .join-card.light:hover { background: #bbb9b4; }
+    .join-type {
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 16px;
+    }
+    .join-card.light .join-type { color: #aaa; }
+    .join-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      margin-bottom: 16px;
+    }
+    .join-desc {
+      font-size: 12px;
+      line-height: 2.1;
+      color: rgba(255,255,255,0.55);
+      flex: 1;
+    }
+    .join-card.light .join-desc { color: #888; }
+    .join-arrow {
+      margin-top: 28px;
+      font-size: 20px;
+      color: rgba(255,255,255,0.3);
+      transition: transform 0.2s, color 0.2s;
+    }
+    .join-card:hover .join-arrow { transform: translateX(4px); color: rgba(255,255,255,0.6); }
+    .join-card.light .join-arrow { color: #bbb; }
+    .join-card.light:hover .join-arrow { color: #666; }
+
+    /* ---- Programs ---- */
+    #programs { background: #edecea; padding: 100px 0; }
+    #programs .section-label,
+    #programs .section-rule { padding: 0 40px; }
+    .program-card { background: #fff; overflow: hidden; flex-shrink: 0; display: flex; flex-direction: column; }
+    .program-img { aspect-ratio: 16 / 9; overflow: hidden; }
+    .program-body { padding: 18px 22px 24px; flex: 1; }
+    .program-tag {
+      font-size: 8px;
+      letter-spacing: 0.22em;
+      color: #aaa;
+      margin-bottom: 8px;
+    }
+    .program-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .program-desc {
+      font-size: 11px;
+      color: #888;
+      line-height: 2.0;
+    }
+    .program-link {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: #555;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .program-link:hover { color: #2d2d2d; border-color: #2d2d2d; }
+    .programs-controls { margin-top: 44px; padding: 0 40px; }
+
+    /* ---- Footer ---- */
+    footer {
+      background: #2e2b28;
+      color: rgba(255,255,255,0.5);
+      padding: 64px 40px 40px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-size: 15px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.8);
+      letter-spacing: 0.1em;
+      margin-bottom: 28px;
+    }
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    .footer-nav a {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: rgba(255,255,255,0.85); }
+
+    /* SNS・連絡先 */
+    .footer-contact {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+      margin-bottom: 40px;
+    }
+    .footer-contact a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.5);
+      transition: color 0.2s;
+    }
+    .footer-contact a:hover { color: rgba(255,255,255,0.9); }
+    .footer-contact svg { width: 18px; height: 18px; fill: currentColor; }
+    .footer-divider {
+      width: 1px; height: 16px;
+      background: rgba(255,255,255,0.15);
+    }
+
+    /* お問い合わせフォーム */
+    .footer-form-wrap {
+      max-width: 480px;
+      margin: 0 auto 52px;
+      text-align: left;
+    }
+    .footer-form-title {
+      text-align: center;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 24px;
+    }
+    .footer-form { display: flex; flex-direction: column; gap: 12px; }
+    .footer-form input,
+    .footer-form textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.8);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+    }
+    .footer-form input::placeholder,
+    .footer-form textarea::placeholder { color: rgba(255,255,255,0.25); }
+    .footer-form input:focus,
+    .footer-form textarea:focus { border-color: rgba(255,255,255,0.35); }
+    .footer-form textarea { height: 100px; }
+    .footer-form-btn {
+      display: block;
+      width: 100%;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.65);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      padding: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .footer-form-btn:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.9);
+    }
+    .footer-form input.invalid,
+    .footer-form textarea.invalid {
+      border-color: rgba(220, 100, 100, 0.7);
+    }
+    .form-error {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: rgba(220, 120, 120, 0.9);
+      min-height: 16px;
+    }
+    .footer-copy { font-size: 10px; letter-spacing: 0.06em; }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 768px) {
+      .header-inner { padding: 0 20px; }
+      nav { gap: 20px; }
+      nav a { font-size: 10px; }
+
+      .story-pair,
+      .story-pair.reverse {
+        grid-template-columns: 1fr;
+      }
+      .story-pair.reverse .story-img { order: 0; }
+      .story-pair.reverse .story-text { order: 1; }
+      .story-text { padding: 32px 24px; }
+
+      .event-card {
+        min-width: calc(100% - 40px) !important;
+        margin: 0 10px !important;
+      }
+      .program-card {
+        min-width: calc(100% - 40px) !important;
+        margin: 0 10px !important;
+        flex-shrink: 0;
+      }
+      .voice-card { padding: 0 6vw; }
+
+      .join-grid { grid-template-columns: 1fr; gap: 2px; }
+
+      .section-wrap,
+      #vision, #our-story, #events, #ii-talk, #join, #programs {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      footer { padding: 48px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== Header ========== -->
+  <header>
+    <div class="header-inner">
+      <a href="#top" class="logo">
+        <span class="logo-dot"></span>
+        Homin_ii
+      </a>
+      <nav>
+        <a href="#top">TOP</a>
+        <a href="#vision">ABOUT</a>
+        <a href="#events">INFO</a>
+        <a href="#join">JOIN</a>
+        <a href="#">FAQ</a>
+        <a href="#">CONTACT</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== Hero ========== -->
+  <div id="top">
+    <div id="hero">
+      <!--
+        写真差し替え方法:
+        .hero-bg の background を以下のように変更する
+        background-image: url('images/hero.jpg');
+        background-size: cover;
+        background-position: center;
+        ▶ 推奨: 老若男女が自然に語り合っている、温かみのある写真
+      -->
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">be kind to yourself</h1>
+        <p class="hero-sub">homin_ii</p>
+      </div>
+      <div class="hero-scroll">
+        scroll
+        <span class="scroll-line"></span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========== Vision ========== -->
+  <section id="vision">
+    <p class="section-label">about us</p>
+    <div class="section-rule"></div>
+    <h2 class="vision-title">
+      話せる。休める。帰れるコミュニティ
+    </h2>
+    <p class="vision-body">
+      Homin_iiの活動では、あなたがありのままで、ただそこに存在していればいい、<br>
+      安心できる環境を目指しています。ありのままの自分が分からなくても大丈夫。<br>
+      そんな本音も受け入れられる環境です。<br><br>
+      自分は頑張っているのだろうか。<br>
+      目標に近づいてすらないし、サボることもある。<br>
+      それでも、頑張っているはずだから。<br><br>
+      もっと、頑張らなきゃ。<br><br>
+      そういう人にこそ、"休養"を見直してみて欲しい。質の高い"休養"にこそ、自分らしく進み続けるヒントがあると、私たちは信じています。
+    </p>
+    <a href="vision.html" class="vision-more">
+      <span>詳しく見る</span>
+      <span class="vision-more-arrow">→</span>
+    </a>
+  </section>
+
+  <!-- ========== Event ========== -->
+  <section id="events">
+    <p class="section-label">info</p>
+    <div class="section-rule"></div>
+    <div class="carousel-wrap">
+      <div class="carousel-track" id="eventsTrack">
+        <div class="event-card" style="display:flex;align-items:center;justify-content:center;min-height:140px;">
+          <p style="font-size:11px;letter-spacing:0.25em;color:#bbb;">COMING SOON</p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-controls">
+      <button class="carousel-btn" id="eventsPrev" aria-label="前へ">←</button>
+      <div class="carousel-dots" id="eventsDots"></div>
+      <button class="carousel-btn" id="eventsNext" aria-label="次へ">→</button>
+    </div>
+    <div class="events-more">
+      <a href="#" class="btn-outline">information</a>
+    </div>
+  </section>
+
+  <!-- ========== 参加者ボイス ========== -->
+  <section id="voices">
+    <p class="section-label">参加者ボイス</p>
+    <div class="section-rule"></div>
+    <div class="voices-track-wrap">
+      <div class="voices-track" id="voicesTrack">
+        <div class="voice-card">
+          <div class="voice-icon">❝</div>
+          <p class="voice-quote">居心地の良い空間で、素敵な気づきができた</p>
+          <div class="voice-footer">
+            <div class="voice-info">
+              <span class="voice-name">20代男性</span>
+            </div>
+          </div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-icon">❝</div>
+          <p class="voice-quote">みんなで認め合える穏やかな空間が良かった</p>
+          <div class="voice-footer">
+            <div class="voice-info">
+              <span class="voice-name">20代女性</span>
+            </div>
+          </div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-icon">❝</div>
+          <p class="voice-quote">1人参加で不安だったけど、心地良かった</p>
+          <div class="voice-footer">
+            <div class="voice-info">
+              <span class="voice-name">20代女性</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="voices-nav">
+      <button class="carousel-btn" id="voicesPrev" aria-label="前へ">←</button>
+      <div id="voicesDots" style="display:flex;gap:10px;align-items:center;"></div>
+      <button class="carousel-btn" id="voicesNext" aria-label="次へ">→</button>
+    </div>
+  </section>
+
+  <!-- ========== やすみば CTA ========== -->
+  <section id="ii-talk">
+    <p class="section-label">community app</p>
+    <div class="section-rule"></div>
+    <h2 class="ii-talk-title">一緒に"てーぶる"を囲いましょう</h2>
+    <p class="ii-talk-body">
+      Homin_iiが運営するコミュニティアプリ「てーぶる」<br>
+      日々の自分の記録、仲間との繋がり、イベント先行告知。<br>
+      どんな自分でも、安心して話せる場所。
+    </p>
+    <a href="http://localhost:3000/talk" class="btn-ghost">てーぶるを囲う →</a>
+  </section>
+
+  <!-- ========== 参加ボタン ========== -->
+  <section id="join">
+    <p class="section-label">join</p>
+    <div class="section-rule"></div>
+    <div class="join-grid">
+      <div class="join-card light">
+        <p class="join-type">EVENT</p>
+        <h3 class="join-title">イベント参加</h3>
+        <p class="join-desc">体験から始めよう。<br>気軽に来て、気軽に帰っていい。</p>
+        <span class="join-arrow">→</span>
+      </div>
+      <div class="join-card light" style="cursor:default;">
+        <p class="join-type">CROWDFUNDING</p>
+        <h3 class="join-title" style="font-size:13px;letter-spacing:0.25em;color:#aaa;">COMING SOON</h3>
+        <p class="join-desc"></p>
+        <span class="join-arrow" style="color:transparent;">→</span>
+      </div>
+      <div class="join-card light" style="cursor:default;">
+        <p class="join-type">VOLUNTEER</p>
+        <h3 class="join-title" style="font-size:13px;letter-spacing:0.25em;color:rgba(255,255,255,0.3);">COMING SOON</h3>
+        <p class="join-desc"></p>
+        <span class="join-arrow" style="color:transparent;">→</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Member ========== -->
+  <section id="programs" style="padding: 100px 40px; text-align: center;">
+    <p class="section-label">member</p>
+    <div class="section-rule"></div>
+    <div style="max-width: 600px; margin: 0 auto 44px;">
+      <img src="images/iitalk.jpg" alt="member" style="width:100%; aspect-ratio:16/9; object-fit:cover;">
+    </div>
+    <a href="member.html" class="btn-ghost">member →</a>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer>
+    <p class="footer-logo">Homin_ii</p>
+    <nav class="footer-nav">
+      <a href="#vision">ABOUT</a>
+      <a href="#events">INFO</a>
+      <a href="#programs">PROGRAM</a>
+      <a href="#join">JOIN</a>
+      <a href="#">FAQ</a>
+    </nav>
+
+    <!-- SNS・連絡先 -->
+    <div class="footer-contact">
+      <a href="https://www.instagram.com/homin_ii26?igsh=d3FscndkM3B6NnM5&utm_source=qr" target="_blank" rel="noopener">
+        <!-- Instagram アイコン -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.975.974-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.975-1.246-2.242-1.308-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608C4.516 2.497 5.783 2.225 7.15 2.163 8.416 2.105 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.014 7.052.072 5.197.157 3.355.673 2.014 2.014.673 3.355.157 5.197.072 7.052.014 8.332 0 8.741 0 12c0 3.259.014 3.668.072 4.948.085 1.855.601 3.697 1.942 5.038 1.341 1.341 3.183 1.857 5.038 1.942C8.332 23.986 8.741 24 12 24s3.668-.014 4.948-.072c1.855-.085 3.697-.601 5.038-1.942 1.341-1.341 1.857-3.183 1.942-5.038.058-1.28.072-1.689.072-4.948 0-3.259-.014-3.668-.072-4.948-.085-1.855-.601-3.697-1.942-5.038C20.645.673 18.803.157 16.948.072 15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+        </svg>
+        Instagram
+      </a>
+      <span class="footer-divider"></span>
+      <a href="mailto:homin.ii.info@gmail.com">
+        <!-- Gmail アイコン -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.907 1.528-1.147C21.69 2.28 24 3.434 24 5.457z"/>
+        </svg>
+        homin.ii.info@gmail.com
+      </a>
+    </div>
+
+    <!-- お問い合わせフォーム -->
+    <div class="footer-form-wrap">
+      <p class="footer-form-title">CONTACT</p>
+      <form class="footer-form" action="https://formsubmit.co/homin.ii2026@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Homin_ii お問い合わせ">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="">
+        <input type="text" name="name" placeholder="お名前 *" required>
+        <input type="email" name="email" placeholder="メールアドレス *" required>
+        <textarea name="message" placeholder="メッセージ *" required></textarea>
+        <p class="form-error" id="formError"></p>
+        <button type="submit" class="footer-form-btn">送信する</button>
+      </form>
+    </div>
+
+    <p class="footer-copy">© 2026 Homin_ii. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // 無限ループカルーセル
+    // 仕組み: 先頭に「末尾 perPage 枚のクローン」、末尾に「先頭 perPage 枚のクローン」を挿入し、
+    //         端に達したらアニメなしで実カードへ瞬間ジャンプする。
+    function initCarousel(trackId, prevId, nextId, dotsId, perPageFn) {
+      const track    = document.getElementById(trackId);
+      const prevBtn  = document.getElementById(prevId);
+      const nextBtn  = document.getElementById(nextId);
+      const dotsWrap = document.getElementById(dotsId);
+
+      const origCards = Array.from(track.children);
+      const origCount = origCards.length;
+      let pp = perPageFn();        // 表示枚数
+      let current = 0;             // 実カードのインデックス (0 〜 origCount-1)
+      let isAnimating = false;
+
+      // --- クローン挿入 ---
+      function buildClones() {
+        // 既存クローンを削除
+        track.querySelectorAll('[data-clone]').forEach(el => el.remove());
+        pp = perPageFn();
+        const cloneCount = pp;
+
+        // 先頭に末尾クローンを prepend
+        for (let i = cloneCount - 1; i >= 0; i--) {
+          const clone = origCards[(origCount - cloneCount + i + origCount) % origCount].cloneNode(true);
+          clone.setAttribute('data-clone', 'pre');
+          track.prepend(clone);
+        }
+        // 末尾に先頭クローンを append
+        for (let i = 0; i < cloneCount; i++) {
+          const clone = origCards[i % origCount].cloneNode(true);
+          clone.setAttribute('data-clone', 'post');
+          track.append(clone);
+        }
+      }
+
+      function allCards() { return Array.from(track.children); }
+
+      function cardW() {
+        const c = allCards()[0];
+        const style = window.getComputedStyle(c);
+        const ml = parseFloat(style.marginLeft) || 0;
+        const mr = parseFloat(style.marginRight) || 0;
+        return c.getBoundingClientRect().width + ml + mr;
+      }
+
+      // インデックスは「実カード上のindex」。先頭クローン分だけオフセット
+      function indexToTranslate(idx) {
+        const preCloneCount = pp;
+        const pos = preCloneCount + idx;
+        return -(pos * cardW());
+      }
+
+      function setTranslate(val, animated) {
+        track.style.transition = animated
+          ? 'transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)'
+          : 'none';
+        track.style.transform = `translateX(${val}px)`;
+      }
+
+      // ドット
+      function buildDots() {
+        dotsWrap.innerHTML = '';
+        for (let i = 0; i < origCount; i++) {
+          const btn = document.createElement('button');
+          btn.className = 'carousel-dot' + (i === current ? ' active' : '');
+          btn.addEventListener('click', () => { if (!isAnimating) goTo(i, true); });
+          dotsWrap.appendChild(btn);
+        }
+      }
+      function updateDots() {
+        Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+
+      function goTo(idx, animated) {
+        current = ((idx % origCount) + origCount) % origCount;
+        setTranslate(indexToTranslate(current), animated);
+        updateDots();
+      }
+
+      // アニメ完了後に端チェック → 瞬間ジャンプ
+      track.addEventListener('transitionend', () => {
+        isAnimating = false;
+        // 先頭クローン領域にいる場合
+        if (current === 0) {
+          const raw = new DOMMatrix(window.getComputedStyle(track).transform).m41;
+          const preCloneOffset = -(pp * cardW());
+          if (Math.abs(raw - preCloneOffset) > cardW() * 0.5) {
+            setTranslate(indexToTranslate(0), false);
+          }
+        }
+      });
+
+      prevBtn.addEventListener('click', () => {
+        if (isAnimating) return;
+        isAnimating = true;
+        const next = (current - 1 + origCount) % origCount;
+        // 先頭から戻る場合: 末尾クローン位置へ瞬間移動してからアニメ
+        if (current === 0) {
+          setTranslate(indexToTranslate(-1), false);
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            current = origCount - 1;
+            setTranslate(indexToTranslate(origCount - 1), true);
+            updateDots();
+          }));
+        } else {
+          goTo(next, true);
+        }
+      });
+
+      nextBtn.addEventListener('click', () => {
+        if (isAnimating) return;
+        isAnimating = true;
+        // 末尾から進む場合: 先頭クローン位置へアニメしてから瞬間ジャンプ
+        if (current === origCount - 1) {
+          setTranslate(indexToTranslate(origCount), true);
+          track.addEventListener('transitionend', function jump() {
+            track.removeEventListener('transitionend', jump);
+            current = 0;
+            setTranslate(indexToTranslate(0), false);
+            updateDots();
+            isAnimating = false;
+          }, { once: true });
+        } else {
+          goTo(current + 1, true);
+        }
+      });
+
+      function init() {
+        buildClones();
+        buildDots();
+        current = 0;
+        setTranslate(indexToTranslate(0), false);
+      }
+
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(init, 200);
+      });
+
+      init();
+    }
+
+    // Event カルーセル (デスクトップ3枚 / モバイル1枚)
+    initCarousel(
+      'eventsTrack', 'eventsPrev', 'eventsNext', 'eventsDots',
+      () => window.innerWidth <= 768 ? 1 : 3
+    );
+
+    // Voices — 1枚フォーカス無限ループ
+    (function () {
+      const track   = document.getElementById('voicesTrack');
+      const prevBtn = document.getElementById('voicesPrev');
+      const nextBtn = document.getElementById('voicesNext');
+      const dotsWrap = document.getElementById('voicesDots');
+      const origCards = Array.from(track.children);
+      const total = origCards.length;
+      let current = 0;
+      let busy = false;
+
+      // クローン（先頭に末尾、末尾に先頭）
+      const pre  = origCards[total - 1].cloneNode(true);
+      const post = origCards[0].cloneNode(true);
+      pre.setAttribute('data-clone','pre');
+      post.setAttribute('data-clone','post');
+      track.prepend(pre);
+      track.append(post);
+
+      const allCards = () => Array.from(track.children);
+
+      function jump(idx, animated) {
+        track.style.transition = animated
+          ? 'transform 0.5s cubic-bezier(0.4,0,0.2,1)' : 'none';
+        // +1 for prepended clone
+        track.style.transform = `translateX(${-(idx + 1) * 100}%)`;
+      }
+
+      function buildDots() {
+        dotsWrap.innerHTML = '';
+        for (let i = 0; i < total; i++) {
+          const b = document.createElement('button');
+          b.className = 'voice-dot' + (i === current ? ' active' : '');
+          b.addEventListener('click', () => { if (!busy) goTo(i); });
+          dotsWrap.appendChild(b);
+        }
+      }
+
+      function updateDots() {
+        Array.from(dotsWrap.children).forEach((d, i) =>
+          d.classList.toggle('active', i === current));
+      }
+
+      function goTo(idx) {
+        current = ((idx % total) + total) % total;
+        jump(current, true);
+        updateDots();
+      }
+
+      track.addEventListener('transitionend', () => {
+        // 末尾クローンで止まった → 先頭へ瞬間ジャンプ
+        if (current === total - 1) {
+          const raw = new DOMMatrix(window.getComputedStyle(track).transform).m41;
+          const trackW = track.parentElement.offsetWidth;
+          if (Math.round(raw) === -Math.round(trackW * (total + 1))) {
+            jump(0, false); current = 0; updateDots();
+          }
+        }
+        busy = false;
+      });
+
+      prevBtn.addEventListener('click', () => {
+        if (busy) return; busy = true;
+        if (current === 0) {
+          jump(-1, false);
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            current = total - 1; jump(current, true); updateDots();
+          }));
+        } else { goTo(current - 1); }
+      });
+
+      nextBtn.addEventListener('click', () => {
+        if (busy) return; busy = true;
+        if (current === total - 1) {
+          jump(total, true);
+          track.addEventListener('transitionend', function once() {
+            track.removeEventListener('transitionend', once);
+            current = 0; jump(0, false); updateDots(); busy = false;
+          }, { once: true });
+        } else { goTo(current + 1); }
+      });
+
+      buildDots();
+      jump(0, false);
+
+      // 自動スライド（4秒ごと）
+      let autoTimer = setInterval(() => {
+        if (busy) return;
+        busy = true;
+        if (current === total - 1) {
+          jump(total, true);
+          track.addEventListener('transitionend', function once() {
+            track.removeEventListener('transitionend', once);
+            current = 0; jump(0, false); updateDots(); busy = false;
+          }, { once: true });
+        } else { goTo(current + 1); }
+      }, 4000);
+
+      // ボタン操作時はタイマーをリセット
+      prevBtn.addEventListener('click', () => { clearInterval(autoTimer); autoTimer = setInterval(() => {
+        if (busy) return; busy = true;
+        if (current === total - 1) { jump(total, true); track.addEventListener('transitionend', function once() { track.removeEventListener('transitionend', once); current = 0; jump(0, false); updateDots(); busy = false; }, { once: true }); } else { goTo(current + 1); }
+      }, 4000); }, true);
+      nextBtn.addEventListener('click', () => { clearInterval(autoTimer); autoTimer = setInterval(() => {
+        if (busy) return; busy = true;
+        if (current === total - 1) { jump(total, true); track.addEventListener('transitionend', function once() { track.removeEventListener('transitionend', once); current = 0; jump(0, false); updateDots(); busy = false; }, { once: true }); } else { goTo(current + 1); }
+      }, 4000); }, true);
+    })();
+
+    // Programs カルーセル (デスクトップ3枚 / モバイル1枚)
+    initCarousel(
+      'programsTrack', 'programsPrev', 'programsNext', 'programsDots',
+      () => window.innerWidth <= 768 ? 1 : 3
+    );
+
+    // お問い合わせフォーム（バリデーション付き）
+    function handleContact(e) {
+      e.preventDefault();
+      const form = e.target;
+      const fields = form.querySelectorAll('[required]');
+      const errorEl = document.getElementById('formError');
+      let valid = true;
+
+      fields.forEach(f => {
+        f.classList.remove('invalid');
+        const empty = f.value.trim() === '';
+        const badEmail = f.type === 'email' && !f.value.includes('@');
+        if (empty || badEmail) {
+          f.classList.add('invalid');
+          valid = false;
+        }
+      });
+
+      if (!valid) {
+        errorEl.textContent = '未入力の項目があります。全て入力してから送信してください。';
+        return;
+      }
+
+      errorEl.textContent = '';
+      const btn = form.querySelector('.footer-form-btn');
+      btn.textContent = '送信しました。ありがとうございます。';
+      btn.disabled = true;
+      btn.style.color = 'rgba(255,255,255,0.4)';
+      form.reset();
+    }
+  </script>
+</body>
+</html>

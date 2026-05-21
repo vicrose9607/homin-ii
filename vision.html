@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vision & 代表者紹介 — Homin_ii</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+      background: #f5f4f0;
+      color: #2d2d2d;
+      line-height: 1.8;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ---- Header ---- */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(245, 244, 240, 0.94);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      height: 56px;
+      border-bottom: 1px solid #d0cec9;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      margin-right: auto;
+    }
+    .logo-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: #2d2d2d;
+    }
+    nav { display: flex; gap: 44px; }
+    nav a {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: #666;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: #2d2d2d; }
+
+    /* ---- Page Hero ---- */
+    .page-hero {
+      padding: 160px 40px 80px;
+      text-align: center;
+      border-bottom: 1px solid #e0ddd8;
+    }
+    .page-hero-label {
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+    .page-hero-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(26px, 4vw, 44px);
+      font-weight: 200;
+      letter-spacing: 0.22em;
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+    .page-hero-sub {
+      font-size: 13px;
+      color: #888;
+      line-height: 2.4;
+      letter-spacing: 0.05em;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 40px;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: #aaa;
+      transition: color 0.2s, gap 0.2s;
+    }
+    .back-link:hover { color: #2d2d2d; gap: 14px; }
+
+    /* ---- Section Base ---- */
+    .section-wrap { padding: 100px 40px; max-width: 860px; margin: 0 auto; }
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      color: #aaa;
+      margin-bottom: 14px;
+    }
+    .section-rule {
+      width: 30px; height: 1px;
+      background: #ccc;
+      margin-bottom: 56px;
+    }
+
+    /* ---- Vision Detail ---- */
+    #vision-detail { border-bottom: 1px solid #e0ddd8; }
+    .vision-blocks { display: flex; flex-direction: column; gap: 56px; }
+    .vision-block h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      margin-bottom: 18px;
+      line-height: 1.7;
+      text-align: center;
+    }
+    .vision-block p {
+      font-size: 13px;
+      color: #6a6a6a;
+      line-height: 2.5;
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
+
+    /* ---- 代表者紹介 ---- */
+    #representative { }
+    .rep-card {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .rep-photo {
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+    }
+    .rep-photo img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .rep-info { padding-top: 8px; }
+    .rep-role {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: #aaa;
+      margin-bottom: 12px;
+    }
+    .rep-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      margin-bottom: 6px;
+    }
+    .rep-name-en {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: #aaa;
+      margin-bottom: 36px;
+    }
+    .rep-rule {
+      width: 30px; height: 1px;
+      background: #ccc;
+      margin-bottom: 32px;
+    }
+    .rep-bio {
+      font-size: 13px;
+      color: #666;
+      line-height: 2.6;
+      letter-spacing: 0.04em;
+      margin-bottom: 36px;
+    }
+    .rep-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .rep-tag {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      border: 1px solid #ccc;
+      padding: 5px 14px;
+      color: #888;
+    }
+    .rep-message {
+      margin-top: 56px;
+      padding: 40px 44px;
+      background: #edecea;
+    }
+    .rep-message-label {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+    .rep-message-body {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 2.4;
+      letter-spacing: 0.08em;
+      color: #444;
+    }
+
+    /* ---- Footer ---- */
+    footer {
+      background: #2e2b28;
+      color: rgba(255,255,255,0.5);
+      padding: 48px 40px;
+      text-align: center;
+      margin-top: 0;
+    }
+    .footer-logo {
+      font-size: 14px;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+    .footer-copy { font-size: 10px; letter-spacing: 0.06em; }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 768px) {
+      .header-inner { padding: 0 20px; }
+      nav { gap: 20px; }
+      .page-hero { padding: 120px 20px 60px; }
+      .section-wrap { padding: 60px 20px; }
+      .rep-card { grid-template-columns: 1fr; gap: 36px; }
+      .rep-photo { aspect-ratio: 4 / 3; }
+      .rep-message { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-dot"></span>
+        Homin_ii
+      </a>
+      <nav>
+        <a href="index.html#top">TOP</a>
+        <a href="index.html#vision">ABOUT</a>
+        <a href="index.html#events">EVENT</a>
+        <a href="index.html#join">JOIN</a>
+        <a href="#">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <h1 class="page-hero-title">
+      about us
+    </h1>
+    <a href="index.html#vision" class="back-link">← トップに戻る</a>
+  </div>
+
+  <!-- Mission -->
+  <section id="mission-detail">
+    <div class="section-wrap">
+      <p class="section-label">mission</p>
+      <div class="section-rule"></div>
+      <div class="vision-blocks">
+
+        <div class="vision-block">
+          <h3>be kind to your self</h3>
+          <p>
+            私たちの最終ミッションは、自分のことを愛せる人を増やすこと。<br>
+            自分で自分に優しくする余裕がないと、視野も狭まり、他の人との距離もできてしまう。<br>
+            <br>
+            そもそも、人それぞれ休養の形も、幸せの基準も違います。それぞれの自分の愛し方や、自分の正解を見つけ、信じることのできる社会にする。<br>
+            頑張り続けることだけが価値ではなくなってきている時代に、そして、自分の時間が増える時代に、1人でも多くの人が、肩書きがない状態の本当の自分を見つけられるようにすることが、私たちのミッションです。<br>
+            <br>
+            自分を愛し、視野が広がれば、地球も社会も、きっと良くなる。
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision Detail -->
+  <section id="vision-detail">
+    <div class="section-wrap">
+      <p class="section-label">vision</p>
+      <div class="section-rule"></div>
+      <div class="vision-blocks">
+
+        <div class="vision-block">
+          <h3>「休むこと＝充電」の文化をつくること</h3>
+          <p>
+            一生懸命になっていると、頑張っていない自分にはまるで価値が無いように思えてしまうことがある。一度も立ち止まってはいけない。休むなんてもってのほか。そう思っているうちに、気づいたら限界を迎えていて、全く動けなくなる。<br>
+            そうなってしまう前に、「休むこと＝充電」という価値観を伝えたい。<br>
+            本当の休養は、怠けでも減速でもなく、次の日に繋げるための"充電"。<br>
+            <br>
+            私たちは、休むことへの罪悪感が強い社会で、頑張り続けることだけが自分の価値じゃないんだと気づけるお手伝いをします。<br>
+            自分の本心を見つけ、次の日に繋げるための、本当の"休養"。<br>
+            ここでは、今まで見えていなかった自分と世界が見えてくる。<br>
+            <br>
+            日常に、心の拠り所を。
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- コンセプト紹介 -->
+  <section id="representative">
+    <div class="section-wrap">
+      <p class="section-label">concept</p>
+      <div class="section-rule"></div>
+      <div class="vision-blocks">
+        <div class="vision-block">
+          <h3>肩書きのない自分でいる時間・場所</h3>
+          <p>
+            Homin_iiは、参加者が肩書きのない自分で存在していればいいと思える、安心できる環境を提供。<br>
+            イベントとアプリを通じて、話せる、休める、帰れるコミュニティをつくる。<br>
+            この休養の仕組みが、人を深く回復させ、次の日に繋げるためにとても大切だと考える。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p class="footer-logo">Homin_ii</p>
+    <p class="footer-copy">© 2026 Homin_ii. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

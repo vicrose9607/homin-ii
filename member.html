@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member — Homin_ii</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+      background: #f5f4f0;
+      color: #2d2d2d;
+      line-height: 1.8;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ---- Header ---- */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(245, 244, 240, 0.94);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      height: 56px;
+      border-bottom: 1px solid #d0cec9;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      margin-right: auto;
+    }
+    .logo-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: #2d2d2d;
+    }
+    nav { display: flex; gap: 44px; }
+    nav a {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: #666;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: #2d2d2d; }
+
+    /* ---- Page Hero ---- */
+    .page-hero {
+      padding: 160px 40px 80px;
+      text-align: center;
+      border-bottom: 1px solid #e0ddd8;
+    }
+    .page-hero-label {
+      font-size: 28px;
+      letter-spacing: 0.2em;
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+    .page-hero-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(26px, 4vw, 44px);
+      font-weight: 200;
+      letter-spacing: 0.22em;
+      line-height: 1.8;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 40px;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: #aaa;
+      transition: color 0.2s, gap 0.2s;
+    }
+    .back-link:hover { color: #2d2d2d; gap: 14px; }
+
+    /* ---- Member Section ---- */
+    .members-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 100px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 100px;
+    }
+
+    .member-card {
+      display: flex;
+      gap: 64px;
+      align-items: start;
+    }
+    .member-card.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .member-photo {
+      width: 260px;
+      flex-shrink: 0;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: #ddd;
+    }
+    .member-photo img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    .member-info { padding-top: 8px; }
+    .member-role {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: #aaa;
+      margin-bottom: 10px;
+    }
+    .member-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      margin-bottom: 28px;
+    }
+    .member-rule {
+      width: 30px; height: 1px;
+      background: #ccc;
+      margin-bottom: 28px;
+    }
+    .member-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: #555;
+      border-bottom: 1px solid #bbb;
+      padding-bottom: 4px;
+      transition: gap 0.25s, color 0.2s, border-color 0.2s;
+    }
+    .member-more:hover { gap: 18px; color: #2d2d2d; border-color: #2d2d2d; }
+    .member-more-arrow { transition: transform 0.25s; }
+    .member-more:hover .member-more-arrow { transform: translateX(4px); }
+
+    .member-message {
+      margin-top: 28px;
+      padding: 32px 40px;
+      background: #edecea;
+    }
+    .member-message-label {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: #aaa;
+      margin-bottom: 18px;
+    }
+    .member-bio {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 13px;
+      font-weight: 300;
+      color: #555;
+      line-height: 2.6;
+      letter-spacing: 0.06em;
+    }
+
+    /* ---- Footer ---- */
+    footer {
+      background: #2e2b28;
+      color: rgba(255,255,255,0.5);
+      padding: 48px 40px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-size: 14px;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+    .footer-copy { font-size: 10px; letter-spacing: 0.06em; }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 768px) {
+      .header-inner { padding: 0 20px; }
+      nav { gap: 20px; }
+      .page-hero { padding: 120px 20px 60px; }
+      .members-wrap { padding: 60px 20px; gap: 72px; }
+      .member-card,
+      .member-card.reverse {
+        grid-template-columns: 1fr;
+      }
+      .member-card.reverse .member-photo { order: 0; }
+      .member-card.reverse .member-info  { order: 1; }
+      .member-photo { aspect-ratio: 4 / 3; }
+      footer { padding: 48px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-dot"></span>
+        Homin_ii
+      </a>
+      <nav>
+        <a href="index.html#top">TOP</a>
+        <a href="index.html#vision">ABOUT</a>
+        <a href="index.html#events">INFO</a>
+        <a href="index.html#join">JOIN</a>
+        <a href="#">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <p class="page-hero-label">member</p>
+    <a href="index.html" class="back-link">← トップに戻る</a>
+  </div>
+
+  <!-- Members -->
+  <div class="members-wrap">
+
+    <!-- 七海 -->
+    <div class="member-card">
+      <div class="member-photo">
+        <img src="images/nanami.jpg" alt="七海">
+      </div>
+      <div class="member-info">
+        <p class="member-role">FOUNDER</p>
+        <h2 class="member-name">七海</h2>
+        <div class="member-rule"></div>
+        <div class="member-message">
+          <p class="member-message-label">MESSAGE</p>
+          <p class="member-bio">
+            バリ島での海外研修を機に、海洋ゴミ問題への気持ちが「責任感」と「焦り」へと変わった。帰国後は社会課題のために動き続けたが、気づけば限界を迎えていた。<br><br>
+            「今どうにかしないと」という焦りと、「今休んではいけない」という罪悪感。頑張るほど視野は狭くなり、身近な人も、自分自身のことも、見えなくなっていた。<br><br>
+            この実体験が、Homin_iiをつくるきっかけになった。<br><br>
+            社会と向き合うためにも、自分の人生を豊かにするためにも、まず「休んでいい」と思えることが必要だと気づいた。休むことへの罪悪感がない社会を、ここからつくっていきたい。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- あかり -->
+    <div class="member-card reverse">
+      <div class="member-photo">
+        <img src="images/akari.jpg" alt="あかり">
+      </div>
+      <div class="member-info">
+        <p class="member-role">共同代表</p>
+        <h2 class="member-name">あかり</h2>
+        <div class="member-rule"></div>
+        <div class="member-message">
+          <p class="member-message-label">MESSAGE</p>
+          <p class="member-bio">
+            タイでの海外研修をきっかけに、環境によって人の機会や可能性が大きく左右される現実に触れ、社会の中で自分らしくいられる場所の必要性を強く感じるようになる。帰国後は、様々なリーダー経験や対話イベントの企画を通して、人が安心して言葉を交わせる場づくりに取り組んできた。<br><br>
+            しかし、誰かのために動き続ける中で、頑張ることを優先し、自分の感情や休むことを後回しにしてしまう瞬間もあった。だからこそ、心が少し緩み、本音に戻れる空間の価値を実感。<br><br>
+            自身の原体験から、心の拠り所となる居場所をつくることが、人が前を向き、社会をより良くしていく力になると感じ、活動している。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- アン -->
+    <div class="member-card">
+      <div class="member-photo">
+        <img src="images/an.jpg" alt="アン">
+      </div>
+      <div class="member-info">
+        <p class="member-role">広報</p>
+        <h2 class="member-name">アン</h2>
+        <div class="member-rule"></div>
+        <div class="member-message">
+          <p class="member-message-label">MESSAGE</p>
+          <p class="member-bio">
+            環境問題への興味から、「解決への近道」を探して海外研修や探求プログラムへ参加。環境破壊を止めるための社会構造改革と、そのための個人レベルの意識改革の必要性を強く実感。<br><br>
+            一方で、「環境のために行動しましょう」と言っても動く人はごく一部であることや、環境対策は我慢や努力だという思い込み、さらには気候不安やグリーンウォッシュといった壁をどう乗り越えるか悩んでいた。<br><br>
+            さらに、身の回りの10代20代、そして現代の日本を包んでいる、"なんとなくの絶望感"を感じ、社会のため、地球のためと言って個人の感情が置いて行かれないためにはどうしたらいいか考え、動けずにいた。<br><br>
+            そんなとき今のメンバーと出会い、「個人の幸せを実現する」ためのエネルギーが地球環境改善に繋がるシステム作りをしたいと感じるようになり、今に至る。
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p class="footer-logo">Homin_ii</p>
+    <p class="footer-copy">© 2026 Homin_ii. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
