@@ -62,9 +62,9 @@
 
     /* ---- Page Hero ---- */
     .page-hero {
-      padding: 120px 40px 60px;
+      padding: 120px 40px 100px;
       text-align: center;
-      border-bottom: 1px solid #e0deda;
+      background: linear-gradient(to bottom, #ffeedd 0%, #fff8cc 50%, #f5f4f0 100%);
     }
     .page-label {
       font-size: 10px;
@@ -88,9 +88,9 @@
 
     /* ---- Main Content ---- */
     .content-wrap {
-      max-width: 720px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 80px 40px 100px;
+      padding: 80px 60px 100px;
     }
     .lead {
       font-family: 'Noto Serif JP', serif;
@@ -201,34 +201,39 @@
 
   <!-- Page Hero -->
   <div class="page-hero">
-    <p class="page-label">community app</p>
-    <h1 class="page-title">てーぶる</h1>
+    <p class="page-label" style="margin-bottom:36px;">community app</p>
+    <h1 class="page-title" style="margin-bottom:52px;">てーぶる</h1>
+    <a href="#" style="display:inline-block;border:1px solid #2d2d2d;padding:13px 48px;font-size:12px;letter-spacing:0.2em;color:#2d2d2d;text-decoration:none;">アプリに参加する</a>
   </div>
 
   <!-- Main Content -->
   <div class="content-wrap">
 
-    <p class="lead">
-      Homin_iiのイベントは出会いを目的とした場ではないため、参加者同士が個人的に繋がることはありません。しかし、専用のアプリ「てーぶる」を使って、"休養仲間"になることはできます。
-    </p>
+    <div style="display:flex;align-items:flex-start;gap:60px;">
+      <div style="flex:1;">
+        <p class="lead">
+          Homin_iiのイベントは出会いを目的とした場ではないため、参加者同士が個人的に繋がることはありません。しかし、専用のアプリ「てーぶる」を使って、"休養仲間"になることはできます。
+        </p>
 
-    <p class="body-text">
-      このアプリで表示されるのはニックネームだけ。自分で選べる「てーぶる」ごとに、毎日会う人には話せないような、普段のちょっとした悩みや、他では話しにくいけど話したいこと、嬉しかったことを打ち明けることができます。他の人からのリアクションは発信者が指定でき、他の人の投稿が表示されるかどうかも自由に設定することができます。
-    </p>
+        <p class="body-text">
+          このアプリで表示されるのはニックネームだけ。自分で選べる「てーぶる」ごとに、毎日会う人には話せないような、普段のちょっとした悩みや、他では話しにくいけど話したいこと、嬉しかったことを打ち明けることができます。他の人からのリアクションは発信者が指定でき、他の人の投稿が表示されるかどうかも自由に設定することができます。
+        </p>
 
-    <p class="body-text">
-      てーぶるには、同じ世代やライフステージの人が集まった「横の繋がり」のてーぶるも、人生の先輩や若い世代と話せる「縦の繋がり」があるてーぶるもあり、様々です。<br>
-      また、毎日Homin_iiから休養のヒントも送られてきます。
-    </p>
+        <p class="body-text">
+          てーぶるには、同じ世代やライフステージの人が集まった「横の繋がり」のてーぶるも、人生の先輩や若い世代と話せる「縦の繋がり」があるてーぶるもあり、様々です。<br>
+          また、毎日Homin_iiから休養のヒントも送られてきます。
+        </p>
+      </div>
+
+      <!-- 楕円形・縁ぼかし写真 -->
+      <div style="flex-shrink:0;width:320px;height:420px;overflow:hidden;border-radius:50%;-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black 55%, transparent 100%);mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black 55%, transparent 100%);">
+        <img src="images/teburu_garden.jpg" alt="てーぶる" style="width:100%;height:100%;object-fit:cover;object-position:center;">
+      </div>
+    </div>
 
     <div class="rule"></div>
 
     <p class="closing">ここに、一緒に休みを大切にする人がいます。</p>
-
-    <!-- アプリリンク（URLが決まり次第 href を更新） -->
-    <div class="app-btn-wrap">
-      <a href="#" class="app-btn">アプリを開く →</a>
-    </div>
 
   </div>
 

@@ -6,7 +6,7 @@
   <title>Info — Homin_ii</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&family=Noto+Sans+JP:wght@300;400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -62,9 +62,7 @@
 
     /* ---- Page Hero ---- */
     .page-hero {
-      padding: 100px 40px 40px;
-      text-align: center;
-      border-bottom: 1px solid #e0deda;
+      display: none;
     }
     .page-label {
       font-size: 10px;
@@ -376,7 +374,12 @@
   <!-- ========== Page Hero ========== -->
   <div class="page-hero">
     <p class="page-label">info</p>
-    <h1 class="page-title">イベント情報</h1>
+  </div>
+
+  <!-- ========== 食×対話 フルバナー ========== -->
+  <div style="width:100%;background:linear-gradient(to bottom, #ffeedd 0%, #fff8cc 50%, #f5f4f0 100%);padding:120px 40px 100px;text-align:center;">
+    <p style="font-size:10px;letter-spacing:0.35em;color:#999;margin-bottom:40px;">info</p>
+    <span style="font-family:'Playfair Display',serif;font-size:52px;font-weight:700;letter-spacing:0.05em;color:#2d2d2d;">食×対話</span>
   </div>
 
   <!-- ========== イベント紹介 ========== -->
@@ -384,38 +387,12 @@
     <p class="section-label" style="text-align:center;">event introduction</p>
     <div class="section-rule"></div>
 
-    <div class="intro-types">
-      <div class="intro-type-card">
-        <p class="intro-type-num">01</p>
-        <p class="intro-type-name">ii_talk</p>
-        <p style="font-size:10px;letter-spacing:0.2em;color:rgba(255,255,255,0.35);margin-bottom:12px;">あいとーく</p>
-        <p class="intro-type-sub">Homin_ii独自の哲学対話<br>第二日曜日 / みんな商店</p>
-      </div>
-      <div class="intro-type-card">
-        <p class="intro-type-num">02</p>
-        <p class="intro-type-name">コラボイベント</p>
-        <p class="intro-type-sub">外部企業との共同開催<br>みんな商店</p>
-      </div>
-      <div class="intro-type-card">
-        <p class="intro-type-num">03</p>
-        <p class="intro-type-name">特別イベント</p>
-        <p class="intro-type-sub">多様な場所で<br>特別なアクティビティ</p>
-      </div>
-    </div>
-
-    <p class="intro-body">
+    <p class="intro-body" style="text-align:center;">
       定期開催している3種のイベントの軸は、食と対話。みんなで美味しいものを食べたり、遊んだり。そして、互いの感情を大切にして、対話をする時間をつくります。<br><br>
-      このような、イベントごとの癒しやアクティビティを通して、自分の本心を見つけ、ありのままの自分を一緒に発見していきます。Homin_iiは、あなたが心から好きなことを見つけるお手伝いをします。
+      このようなイベントごとの癒しや、アクティビティを通して、自分の本心を見つけ、ありのままの自分を一緒に発見していきます。Homin_iiは、あなたが心から好きなことを見つけるお手伝いをします。
     </p>
 
-    <div class="intro-keyword">
-      <span>食と対話</span>
-      <span>月一回開催</span>
-      <span>ありのまま</span>
-      <span>心の充電</span>
-    </div>
-
-    <p class="intro-body">
+    <p class="intro-body" style="text-align:center;margin-top:40px;">
       これらのイベントは、参加者それぞれが好きなように過ごせるように設計されています。無理に自分を偽らずに、疲れた時に立ち止まれたり、子どもの頃のようになれたり、気が抜けるような、癒され、ホッとする空間を目指しています。それぞれの日常を抱える人たちが、同じ場所で、心の充電をしています。
     </p>
   </section>

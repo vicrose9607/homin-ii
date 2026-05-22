@@ -64,8 +64,8 @@
     /* ---- Hero ---- */
     #hero {
       position: relative;
-      height: 100vh;
-      min-height: 600px;
+      height: 78vh;
+      min-height: 400px;
       overflow: hidden;
     }
     .hero-bg {
@@ -81,6 +81,14 @@
       position: absolute;
       inset: 0;
       background: rgba(18, 15, 12, 0.24);
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 200px;
+      background: linear-gradient(to bottom, transparent, #f5f4f0);
+      z-index: 2;
     }
     .hero-content {
       position: relative;
@@ -137,9 +145,9 @@
     .section-wrap { padding: 100px 40px; }
     .section-label {
       text-align: center;
-      font-size: 10px;
+      font-size: 12px;
       letter-spacing: 0.35em;
-      color: #999;
+      color: #444;
       margin-bottom: 14px;
     }
     .section-rule {
@@ -154,6 +162,8 @@
       text-align: center;
       position: relative;
       overflow: hidden;
+      margin-top: -60px;
+      padding-top: 180px;
     }
     #vision::before {
       content: '';
@@ -178,7 +188,7 @@
       font-size: 13px;
       color: #444;
       line-height: 2.4;
-      max-width: 520px;
+      max-width: 720px;
       margin: 0 auto 40px;
       letter-spacing: 0.05em;
     }
@@ -186,7 +196,8 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-size: 11px;
+      font-size: 14px;
+      font-weight: 400;
       letter-spacing: 0.18em;
       color: #555;
       border-bottom: 1px solid #bbb;
@@ -252,7 +263,7 @@
     .story-pair.reverse .story-text { order: 2; }
 
     /* ---- Events ---- */
-    #events { background: #edecea; padding: 100px 0; }
+    #events { background: linear-gradient(to bottom, #f5f4f0 0%, #f5f0e6 80px); padding: 100px 0; }
     #events .section-label,
     #events .section-rule { padding: 0 40px; }
     .carousel-wrap {
@@ -348,9 +359,9 @@
     .btn-outline:hover { background: #2d2d2d; color: #fff; border-color: #2d2d2d; }
 
     /* ---- Voices ---- */
-    #voices { padding: 60px 0; background: #cac7c2; }
-    #voices .section-label { color: #aaa; }
-    #voices .section-rule  { background: #ccc; }
+    #voices { padding: 30px 0; background: #f5f0e6; }
+    #voices .section-label { color: #666; }
+    #voices .section-rule  { background: #bbb; }
     .voices-track-wrap { overflow: hidden; width: 100%; }
     .voices-track {
       display: flex;
@@ -477,64 +488,80 @@
     }
 
     /* ---- Join ---- */
-    #join { padding: 100px 40px; background: #f5f0e6; }
-    .join-grid {
+    #join { padding: 60px 0 0; background: #f5f0e6; }
+    #join > .section-label,
+    #join > .section-rule { padding: 0 40px; }
+    .join-photo-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      max-width: 960px;
-      margin: 0 auto;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      width: 100%;
+      align-items: start;
     }
-    .join-card {
-      background: #2e2b28;
+    .join-photo-card {
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .join-photo-card:nth-child(2) { margin-top: 80px; }
+    .join-photo-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .join-photo-wrap img {
+      width: 100%;
+      aspect-ratio: 1800/742;
+      object-fit: cover;
+      display: block;
+      filter: brightness(1.05) saturate(0.8);
+      transition: filter 0.3s;
+    }
+    .join-photo-card:hover .join-photo-wrap img { filter: brightness(0.95) saturate(0.8); }
+    .join-photo-big {
+      position: absolute;
+      top: 52px;
+      left: 24px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(14px, 1.8vw, 22px);
+      font-weight: 700;
       color: #fff;
-      padding: 60px 44px;
-      text-align: center;
-      cursor: pointer;
-      transition: background 0.2s;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    .join-photo-panel {
+      background: #fff;
+      padding: 24px 36px;
       display: flex;
-      flex-direction: column;
       align-items: center;
+      justify-content: space-between;
+      margin-top: -2px;
     }
-    .join-card:hover { background: #1e1c1a; }
-    .join-card.light {
-      background: #f5f0e6;
-      color: #2d2d2d;
-    }
-    .join-card.light:hover { background: #ede8da; }
-    .join-type {
-      font-size: 9px;
-      letter-spacing: 0.25em;
-      color: rgba(255,255,255,0.4);
-      margin-bottom: 16px;
-    }
-    .join-card.light .join-type { color: #aaa; }
-    .join-title {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 18px;
-      font-weight: 400;
+    .join-photo-panel-title {
+      font-size: 13px;
       letter-spacing: 0.12em;
-      margin-bottom: 16px;
+      color: #2d2d2d;
+      font-weight: 400;
     }
-    .join-desc {
-      font-size: 12px;
-      line-height: 2.1;
-      color: rgba(255,255,255,0.55);
-      flex: 1;
+    .join-photo-panel-arrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: #aaa;
     }
-    .join-card.light .join-desc { color: #888; }
-    .join-arrow {
-      margin-top: 28px;
-      font-size: 20px;
-      color: rgba(255,255,255,0.3);
-      transition: transform 0.2s, color 0.2s;
+    .join-photo-panel-arrow::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: #aaa;
     }
-    .join-card:hover .join-arrow { transform: translateX(4px); color: rgba(255,255,255,0.6); }
-    .join-card.light .join-arrow { color: #bbb; }
-    .join-card.light:hover .join-arrow { color: #666; }
 
     /* ---- Programs ---- */
-    #programs { background: #edecea; padding: 100px 0; }
+    #programs { background: #f5f0e6; padding: 100px 0; }
     #programs .section-label,
     #programs .section-rule { padding: 0 40px; }
     .program-card { background: #fff; overflow: hidden; flex-shrink: 0; display: flex; flex-direction: column; }
@@ -757,7 +784,7 @@
       <div class="hero-bg"></div>
       <div class="hero-content">
         <h1 class="hero-title">be kind to yourself</h1>
-        <p class="hero-sub">homin_ii</p>
+        <p class="hero-sub">Homin_ii</p>
       </div>
       <div class="hero-scroll">
         scroll
@@ -775,7 +802,7 @@
       話せる。休める。帰れるコミュニティ
     </h2>
     <p class="vision-body">
-      Homin_iiの活動では、あなたがありのままで、ただそこに存在していればいい、<br>
+      Homin_iiの活動では、あなたが肩書きのない自分で、ただそこに存在していればいい、<br>
       安心できる環境を目指しています。ありのままの自分が分からなくても大丈夫。<br>
       そんな本音も受け入れられる環境です。<br><br>
       自分は頑張っているのだろうか。<br>
@@ -784,7 +811,7 @@
       そういう人にこそ、"休養"を見直してみて欲しい。質の高い"休養"にこそ、自分らしく進み続けるヒントがあると、私たちは信じています。
     </p>
     <a href="vision.html" class="vision-more">
-      <span>詳しく見る</span>
+      <span>view more</span>
       <span class="vision-more-arrow">→</span>
     </a>
   </section>
@@ -806,18 +833,17 @@
       <button class="carousel-btn" id="eventsNext" aria-label="次へ">→</button>
     </div>
     <div class="events-more">
-      <a href="info.html" class="btn-outline">information</a>
+      <a href="info.html" class="btn-outline" style="border-radius:999px;">information</a>
     </div>
   </section>
 
   <!-- ========== 参加者ボイス ========== -->
   <section id="voices">
-    <p class="section-label">参加者ボイス</p>
+    <p class="section-label">voice</p>
     <div class="section-rule"></div>
     <div class="voices-track-wrap">
       <div class="voices-track" id="voicesTrack">
         <div class="voice-card">
-          <div class="voice-icon">❝</div>
           <p class="voice-quote">居心地の良い空間で、素敵な気づきができた</p>
           <div class="voice-footer">
             <div class="voice-info">
@@ -826,7 +852,6 @@
           </div>
         </div>
         <div class="voice-card">
-          <div class="voice-icon">❝</div>
           <p class="voice-quote">みんなで認め合える穏やかな空間が良かった</p>
           <div class="voice-footer">
             <div class="voice-info">
@@ -835,7 +860,6 @@
           </div>
         </div>
         <div class="voice-card">
-          <div class="voice-icon">❝</div>
           <p class="voice-quote">1人参加で不安だったけど、心地良かった</p>
           <div class="voice-footer">
             <div class="voice-info">
@@ -856,27 +880,33 @@
   <section id="join">
     <p class="section-label">join</p>
     <div class="section-rule"></div>
-    <div class="join-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 640px;">
-      <a href="info.html" class="join-card light">
-        <p class="join-type">EVENT</p>
-        <h3 class="join-title">イベント参加</h3>
-        <p class="join-desc">体験から始めよう。<br>気軽に来て、気軽に帰っていい。</p>
-        <span style="display:flex;align-items:center;gap:8px;margin-top:28px;font-size:10px;letter-spacing:0.18em;color:#aaa;">view more <span class="join-arrow" style="margin-top:0;">→</span></span>
+    <div class="join-photo-grid">
+      <a href="info.html" class="join-photo-card">
+        <div class="join-photo-wrap">
+          <img src="images/event_join.jpg" alt="イベント参加">
+          <span class="join-photo-big">event</span>
+        </div>
+        <div class="join-photo-panel">
+          <span class="join-photo-panel-title">view more</span>
+          <span class="join-photo-panel-arrow">→</span>
+        </div>
       </a>
-      <div class="join-card light">
-        <p class="join-type">COMMUNITY APP</p>
-        <h3 class="join-title">てーぶる</h3>
-        <p class="join-desc">日々の記録、仲間とのつながり。<br>どんな自分でも、ただいまと言える場所。</p>
-        <a href="teburu.html" style="display:flex;align-items:center;gap:8px;margin-top:28px;font-size:10px;letter-spacing:0.18em;color:#aaa;text-decoration:none;">view more <span>→</span></a>
-      </div>
+      <a href="teburu.html" class="join-photo-card" style="margin-top:80px;display:block;text-decoration:none;color:inherit;">
+        <div class="join-photo-wrap">
+          <img src="images/community_join.jpg" alt="community app">
+          <span class="join-photo-big">community app</span>
+        </div>
+        <div class="join-photo-panel">
+          <span class="join-photo-panel-title">view more</span>
+          <span class="join-photo-panel-arrow">→</span>
+        </div>
+      </a>
     </div>
   </section>
 
   <!-- ========== Member ========== -->
   <section id="programs" style="padding: 100px 40px; text-align: center;">
-    <p class="section-label">member</p>
-    <div class="section-rule"></div>
-    <a href="member.html" class="btn-ghost">member →</a>
+    <a href="member.html" class="btn-ghost" style="font-size:18px;letter-spacing:0.25em;padding:20px 72px;border-radius:999px;">member →</a>
   </section>
 
   <!-- ========== Footer ========== -->
@@ -900,12 +930,12 @@
         Instagram
       </a>
       <span class="footer-divider"></span>
-      <a href="mailto:homin.ii.info@gmail.com">
+      <a href="mailto:homin.ii2026@gmail.com">
         <!-- Gmail アイコン -->
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.907 1.528-1.147C21.69 2.28 24 3.434 24 5.457z"/>
         </svg>
-        homin.ii.info@gmail.com
+        homin.ii2026@gmail.com
       </a>
     </div>
 
