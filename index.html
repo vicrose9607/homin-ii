@@ -477,7 +477,7 @@
     }
 
     /* ---- Join ---- */
-    #join { padding: 100px 40px; }
+    #join { padding: 100px 40px; background: #f5f0e6; }
     .join-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -498,10 +498,10 @@
     }
     .join-card:hover { background: #1e1c1a; }
     .join-card.light {
-      background: #cac7c2;
+      background: #f5f0e6;
       color: #2d2d2d;
     }
-    .join-card.light:hover { background: #bbb9b4; }
+    .join-card.light:hover { background: #ede8da; }
     .join-type {
       font-size: 9px;
       letter-spacing: 0.25em;
@@ -737,8 +737,8 @@
         <a href="#vision">ABOUT</a>
         <a href="#events">INFO</a>
         <a href="#join">JOIN</a>
-        <a href="#">FAQ</a>
-        <a href="#">CONTACT</a>
+        <a href="#programs">MEMBER</a>
+        <a href="#contact">CONTACT</a>
       </nav>
     </div>
   </header>
@@ -779,9 +779,8 @@
       安心できる環境を目指しています。ありのままの自分が分からなくても大丈夫。<br>
       そんな本音も受け入れられる環境です。<br><br>
       自分は頑張っているのだろうか。<br>
-      目標に近づいてすらないし、サボることもある。<br>
-      それでも、頑張っているはずだから。<br><br>
-      もっと、頑張らなきゃ。<br><br>
+      目標に近づいてすらないし、サボってしまうこともあるけど、頑張っているはず。<br>
+      でももっと、頑張らなきゃ。<br><br>
       そういう人にこそ、"休養"を見直してみて欲しい。質の高い"休養"にこそ、自分らしく進み続けるヒントがあると、私たちは信じています。
     </p>
     <a href="vision.html" class="vision-more">
@@ -807,7 +806,7 @@
       <button class="carousel-btn" id="eventsNext" aria-label="次へ">→</button>
     </div>
     <div class="events-more">
-      <a href="#" class="btn-outline">information</a>
+      <a href="info.html" class="btn-outline">information</a>
     </div>
   </section>
 
@@ -853,41 +852,22 @@
     </div>
   </section>
 
-  <!-- ========== やすみば CTA ========== -->
-  <section id="ii-talk">
-    <p class="section-label">community app</p>
-    <div class="section-rule"></div>
-    <h2 class="ii-talk-title">一緒に"てーぶる"を囲いましょう</h2>
-    <p class="ii-talk-body">
-      Homin_iiが運営するコミュニティアプリ「てーぶる」<br>
-      日々の自分の記録、仲間との繋がり、イベント先行告知。<br>
-      どんな自分でも、安心して話せる場所。
-    </p>
-    <a href="http://localhost:3000/talk" class="btn-ghost">てーぶるを囲う →</a>
-  </section>
-
   <!-- ========== 参加ボタン ========== -->
   <section id="join">
     <p class="section-label">join</p>
     <div class="section-rule"></div>
-    <div class="join-grid">
-      <div class="join-card light">
+    <div class="join-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 640px;">
+      <a href="info.html" class="join-card light">
         <p class="join-type">EVENT</p>
         <h3 class="join-title">イベント参加</h3>
         <p class="join-desc">体験から始めよう。<br>気軽に来て、気軽に帰っていい。</p>
-        <span class="join-arrow">→</span>
-      </div>
-      <div class="join-card light" style="cursor:default;">
-        <p class="join-type">CROWDFUNDING</p>
-        <h3 class="join-title" style="font-size:13px;letter-spacing:0.25em;color:#aaa;">COMING SOON</h3>
-        <p class="join-desc"></p>
-        <span class="join-arrow" style="color:transparent;">→</span>
-      </div>
-      <div class="join-card light" style="cursor:default;">
-        <p class="join-type">VOLUNTEER</p>
-        <h3 class="join-title" style="font-size:13px;letter-spacing:0.25em;color:rgba(255,255,255,0.3);">COMING SOON</h3>
-        <p class="join-desc"></p>
-        <span class="join-arrow" style="color:transparent;">→</span>
+        <span style="display:flex;align-items:center;gap:8px;margin-top:28px;font-size:10px;letter-spacing:0.18em;color:#aaa;">view more <span class="join-arrow" style="margin-top:0;">→</span></span>
+      </a>
+      <div class="join-card light">
+        <p class="join-type">COMMUNITY APP</p>
+        <h3 class="join-title">てーぶる</h3>
+        <p class="join-desc">日々の記録、仲間とのつながり。<br>どんな自分でも、ただいまと言える場所。</p>
+        <a href="teburu.html" style="display:flex;align-items:center;gap:8px;margin-top:28px;font-size:10px;letter-spacing:0.18em;color:#aaa;text-decoration:none;">view more <span>→</span></a>
       </div>
     </div>
   </section>
@@ -896,9 +876,6 @@
   <section id="programs" style="padding: 100px 40px; text-align: center;">
     <p class="section-label">member</p>
     <div class="section-rule"></div>
-    <div style="max-width: 600px; margin: 0 auto 44px;">
-      <img src="images/iitalk.jpg" alt="member" style="width:100%; aspect-ratio:16/9; object-fit:cover;">
-    </div>
     <a href="member.html" class="btn-ghost">member →</a>
   </section>
 
@@ -933,7 +910,7 @@
     </div>
 
     <!-- お問い合わせフォーム -->
-    <div class="footer-form-wrap">
+    <div class="footer-form-wrap" id="contact">
       <p class="footer-form-title">CONTACT</p>
       <form class="footer-form" action="https://formsubmit.co/homin.ii2026@gmail.com" method="POST">
         <input type="hidden" name="_subject" value="Homin_ii お問い合わせ">

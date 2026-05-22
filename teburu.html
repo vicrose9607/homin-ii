@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>てーぶる — Homin_ii</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+      background: #f5f4f0;
+      color: #2d2d2d;
+      line-height: 1.8;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ---- Header ---- */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(245, 244, 240, 0.94);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      height: 56px;
+      border-bottom: 1px solid #d0cec9;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      margin-right: auto;
+    }
+    .logo-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: #2d2d2d;
+    }
+    nav { display: flex; gap: 44px; }
+    nav a {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: #666;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: #2d2d2d; }
+
+    /* ---- Page Hero ---- */
+    .page-hero {
+      padding: 120px 40px 60px;
+      text-align: center;
+      border-bottom: 1px solid #e0deda;
+    }
+    .page-label {
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      color: #999;
+      margin-bottom: 16px;
+    }
+    .page-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 200;
+      letter-spacing: 0.25em;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+    .page-title-ruby {
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: #aaa;
+    }
+
+    /* ---- Main Content ---- */
+    .content-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 80px 40px 100px;
+    }
+    .lead {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(15px, 2vw, 18px);
+      font-weight: 300;
+      line-height: 2.4;
+      letter-spacing: 0.08em;
+      color: #444;
+      margin-bottom: 56px;
+    }
+    .body-text {
+      font-size: 13px;
+      color: #666;
+      line-height: 2.6;
+      letter-spacing: 0.05em;
+      margin-bottom: 40px;
+    }
+    .rule {
+      width: 30px; height: 1px;
+      background: #ccc;
+      margin: 56px 0;
+    }
+    .closing {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(16px, 2.2vw, 22px);
+      font-weight: 200;
+      letter-spacing: 0.18em;
+      line-height: 2;
+      color: #555;
+      text-align: center;
+    }
+
+    /* ---- App Button ---- */
+    .app-btn-wrap {
+      text-align: center;
+      margin-top: 60px;
+    }
+    .app-btn {
+      display: inline-block;
+      background: #2e2b28;
+      color: rgba(255,255,255,0.85);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      padding: 16px 56px;
+      transition: background 0.2s;
+    }
+    .app-btn:hover { background: #1e1c1a; }
+
+    /* ---- Back ---- */
+    .back-wrap {
+      text-align: center;
+      padding: 20px 40px 80px;
+    }
+    .back-link {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: #aaa;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 3px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .back-link:hover { color: #2d2d2d; border-color: #2d2d2d; }
+
+    /* ---- Footer ---- */
+    footer {
+      background: #2e2b28;
+      color: rgba(255,255,255,0.5);
+      padding: 48px 40px 32px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-size: 15px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.8);
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+    .footer-copy { font-size: 10px; letter-spacing: 0.06em; }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 768px) {
+      .header-inner { padding: 0 20px; }
+      nav { gap: 20px; }
+      .page-hero { padding: 100px 20px 48px; }
+      .content-wrap { padding: 56px 20px 80px; }
+      footer { padding: 40px 20px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-dot"></span>
+        Homin_ii
+      </a>
+      <nav>
+        <a href="index.html#vision">ABOUT</a>
+        <a href="info.html">INFO</a>
+        <a href="index.html#join">JOIN</a>
+        <a href="member.html">MEMBER</a>
+        <a href="index.html#contact">CONTACT</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <p class="page-label">community app</p>
+    <h1 class="page-title">てーぶる</h1>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content-wrap">
+
+    <p class="lead">
+      Homin_iiのイベントは出会いを目的とした場ではないため、参加者同士が個人的に繋がることはありません。しかし、専用のアプリ「てーぶる」を使って、"休養仲間"になることはできます。
+    </p>
+
+    <p class="body-text">
+      このアプリで表示されるのはニックネームだけ。自分で選べる「てーぶる」ごとに、毎日会う人には話せないような、普段のちょっとした悩みや、他では話しにくいけど話したいこと、嬉しかったことを打ち明けることができます。他の人からのリアクションは発信者が指定でき、他の人の投稿が表示されるかどうかも自由に設定することができます。
+    </p>
+
+    <p class="body-text">
+      てーぶるには、同じ世代やライフステージの人が集まった「横の繋がり」のてーぶるも、人生の先輩や若い世代と話せる「縦の繋がり」があるてーぶるもあり、様々です。<br>
+      また、毎日Homin_iiから休養のヒントも送られてきます。
+    </p>
+
+    <div class="rule"></div>
+
+    <p class="closing">ここに、一緒に休みを大切にする人がいます。</p>
+
+    <!-- アプリリンク（URLが決まり次第 href を更新） -->
+    <div class="app-btn-wrap">
+      <a href="#" class="app-btn">アプリを開く →</a>
+    </div>
+
+  </div>
+
+  <div class="back-wrap">
+    <a href="index.html" class="back-link">← トップへ戻る</a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p class="footer-logo">Homin_ii</p>
+    <p class="footer-copy">© 2026 Homin_ii. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
