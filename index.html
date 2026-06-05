@@ -748,21 +748,21 @@
         background: rgba(245, 244, 240, 0.98);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
-        flex-direction: column;
-        padding: 8px 20px 20px;
-        gap: 0;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px 16px;
+        gap: 0 24px;
         border-bottom: 1px solid #d0cec9;
         z-index: 99;
       }
       nav.open { display: flex; }
       nav a {
-        padding: 13px 0;
-        font-size: 12px;
+        padding: 8px 4px;
+        font-size: 11px;
         letter-spacing: 0.15em;
-        border-bottom: 1px solid rgba(0,0,0,0.06);
         color: #444;
       }
-      nav a:last-child { border-bottom: none; }
 
       .story-pair,
       .story-pair.reverse {

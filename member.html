@@ -140,7 +140,7 @@
       background: #ccc;
       margin-bottom: 28px;
     }
-    .member-more {
+    .member-more-btn {
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -150,17 +150,25 @@
       color: #555;
       border-bottom: 1px solid #bbb;
       padding-bottom: 4px;
+      cursor: pointer;
+      background: none;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      font-family: 'Noto Sans JP', sans-serif;
       transition: gap 0.25s, color 0.2s, border-color 0.2s;
     }
-    .member-more:hover { gap: 18px; color: #2d2d2d; border-color: #2d2d2d; }
-    .member-more-arrow { transition: transform 0.25s; }
-    .member-more:hover .member-more-arrow { transform: translateX(4px); }
+    .member-more-btn:hover { gap: 18px; color: #2d2d2d; border-bottom-color: #2d2d2d; }
+    .member-more-arrow { transition: transform 0.25s; display: inline-block; }
+    .member-more-btn.open .member-more-arrow { transform: rotate(90deg); }
 
     .member-message {
+      display: none;
       margin-top: 28px;
       padding: 32px 40px;
       background: #edecea;
     }
+    .member-message.open { display: block; }
     .member-message-label {
       font-size: 9px;
       letter-spacing: 0.3em;
@@ -191,19 +199,66 @@
     }
     .footer-copy { font-size: 10px; letter-spacing: 0.06em; }
 
+    /* ---- Hamburger ---- */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      margin-left: 16px;
+      flex-shrink: 0;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: #2d2d2d;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
     /* ---- Responsive ---- */
     @media (max-width: 768px) {
       .header-inner { padding: 0 20px; }
-      nav { gap: 20px; }
+      .hamburger { display: flex; }
+      nav {
+        display: none;
+        position: absolute;
+        top: 56px; left: 0; right: 0;
+        background: rgba(245, 244, 240, 0.98);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px 16px;
+        gap: 0 24px;
+        border-bottom: 1px solid #d0cec9;
+        z-index: 99;
+      }
+      nav.open { display: flex; }
+      nav a {
+        padding: 8px 4px;
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        color: #444;
+      }
       .page-hero { padding: 120px 20px 60px; }
       .members-wrap { padding: 60px 20px; gap: 72px; }
       .member-card,
       .member-card.reverse {
-        grid-template-columns: 1fr;
+        flex-direction: column;
       }
       .member-card.reverse .member-photo { order: 0; }
       .member-card.reverse .member-info  { order: 1; }
-      .member-photo { aspect-ratio: 4 / 3; }
+      .member-photo { width: 100%; aspect-ratio: 4 / 3; }
+      .member-message { padding: 24px 20px; }
       footer { padding: 48px 20px; }
     }
   </style>
@@ -217,13 +272,16 @@
         <span class="logo-dot"></span>
         Homin_ii
       </a>
-      <nav>
+      <nav id="mainNav">
         <a href="index.html#top">TOP</a>
         <a href="index.html#vision">ABOUT</a>
         <a href="index.html#events">INFO</a>
         <a href="index.html#join">JOIN</a>
         <a href="#">FAQ</a>
       </nav>
+      <button class="hamburger" id="hamburger" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
@@ -245,6 +303,9 @@
         <p class="member-role">FOUNDER</p>
         <h2 class="member-name">七海</h2>
         <div class="member-rule"></div>
+        <button class="member-more-btn" onclick="toggleMessage(this)">
+          <span class="member-more-label">MORE</span> <span class="member-more-arrow">›</span>
+        </button>
         <div class="member-message">
           <p class="member-message-label">MESSAGE</p>
           <p class="member-bio">
@@ -266,6 +327,9 @@
         <p class="member-role">共同代表</p>
         <h2 class="member-name">あかり</h2>
         <div class="member-rule"></div>
+        <button class="member-more-btn" onclick="toggleMessage(this)">
+          <span class="member-more-label">MORE</span> <span class="member-more-arrow">›</span>
+        </button>
         <div class="member-message">
           <p class="member-message-label">MESSAGE</p>
           <p class="member-bio">
@@ -286,6 +350,9 @@
         <p class="member-role">広報</p>
         <h2 class="member-name">アン</h2>
         <div class="member-rule"></div>
+        <button class="member-more-btn" onclick="toggleMessage(this)">
+          <span class="member-more-label">MORE</span> <span class="member-more-arrow">›</span>
+        </button>
         <div class="member-message">
           <p class="member-message-label">MESSAGE</p>
           <p class="member-bio">
@@ -299,6 +366,31 @@
     </div>
 
   </div>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mainNav = document.getElementById('mainNav');
+    if (hamburger && mainNav) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mainNav.classList.toggle('open');
+      });
+      mainNav.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          mainNav.classList.remove('open');
+        });
+      });
+    }
+
+    function toggleMessage(btn) {
+      const msg = btn.nextElementSibling;
+      const isOpen = msg.classList.contains('open');
+      msg.classList.toggle('open');
+      btn.classList.toggle('open');
+      btn.querySelector('.member-more-label').textContent = isOpen ? 'MORE' : 'LESS';
+    }
+  </script>
 
   <!-- Footer -->
   <footer>
