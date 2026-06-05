@@ -128,14 +128,14 @@
       letter-spacing: 0.12em;
       margin-bottom: 18px;
       line-height: 1.7;
-      text-align: center;
+      text-align: left;
     }
     .vision-block p {
       font-size: 13px;
       color: #6a6a6a;
       line-height: 2.5;
       letter-spacing: 0.04em;
-      text-align: center;
+      text-align: left;
     }
 
     /* ---- 代表者紹介 ---- */
@@ -233,12 +233,75 @@
     }
     .footer-copy { font-size: 10px; letter-spacing: 0.06em; }
 
+    /* ---- Concept layout ---- */
+    .concept-layout { display: flex; flex-direction: column; }
+    .concept-text { text-align: left; }
+    .concept-photo {
+      width: 100%;
+      height: 340px;
+      overflow: hidden;
+      border-radius: 4px;
+      margin-bottom: 48px;
+      -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+    }
+
+    /* ---- Hamburger ---- */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      margin-left: 16px;
+      flex-shrink: 0;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: #2d2d2d;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
     /* ---- Responsive ---- */
     @media (max-width: 768px) {
       .header-inner { padding: 0 20px; }
-      nav { gap: 20px; }
+      .hamburger { display: flex; }
+      nav {
+        display: none;
+        position: absolute;
+        top: 56px; left: 0; right: 0;
+        background: rgba(245, 244, 240, 0.98);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        flex-direction: column;
+        padding: 8px 20px 20px;
+        gap: 0;
+        border-bottom: 1px solid #d0cec9;
+        z-index: 99;
+      }
+      nav.open { display: flex; }
+      nav a {
+        padding: 13px 0;
+        font-size: 12px;
+        letter-spacing: 0.15em;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+        color: #444;
+      }
+      nav a:last-child { border-bottom: none; }
+
       .page-hero { padding: 120px 20px 60px; }
       .section-wrap { padding: 60px 20px; }
+      .section-label { font-size: 26px; }
+      .concept-photo { height: 220px; }
+
       .rep-card { grid-template-columns: 1fr; gap: 36px; }
       .rep-photo { aspect-ratio: 4 / 3; }
       .rep-message { padding: 28px 24px; }
@@ -254,13 +317,16 @@
         <span class="logo-dot"></span>
         Homin_ii
       </a>
-      <nav>
+      <nav id="mainNav">
         <a href="index.html#top">TOP</a>
         <a href="index.html#vision">ABOUT</a>
         <a href="index.html#events">EVENT</a>
         <a href="index.html#join">JOIN</a>
         <a href="#">FAQ</a>
       </nav>
+      <button class="hamburger" id="hamburger" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
@@ -338,9 +404,14 @@
       <p class="section-label">concept</p>
       <div class="section-rule"></div>
 
-      <!-- 本文＋写真（横並び） -->
-      <div style="display:flex;gap:60px;align-items:flex-start;">
-        <div style="flex:1;text-align:left;">
+      <!-- 写真→テキストの縦並び -->
+      <div class="concept-layout">
+        <!-- 写真（上） -->
+        <div class="concept-photo">
+          <img src="images/concept_field.jpg" alt="concept" style="width:100%;height:100%;object-fit:cover;object-position:center;">
+        </div>
+        <!-- テキスト（下） -->
+        <div class="concept-text">
           <p style="font-size:13px;color:#6a6a6a;line-height:2.5;letter-spacing:0.04em;">
             Homin_iiは、参加者が肩書きのない自分で、ただ存在していればいいと思える、安心できる環境を提供します。<br>
             肩書きのない自分を出すことが不安でも大丈夫。そんな本音も受け入れられる環境です。<br>
@@ -365,13 +436,26 @@
             イベントとアプリを通じて、話せる、休める、帰れるコミュニティをつくる
           </p>
         </div>
-        <!-- 縁ぼかし写真 -->
-        <div style="flex-shrink:0;width:280px;height:380px;overflow:hidden;border-radius:4px;-webkit-mask-image:radial-gradient(ellipse 85% 85% at 50% 50%, black 50%, transparent 100%);mask-image:radial-gradient(ellipse 85% 85% at 50% 50%, black 50%, transparent 100%);margin-top:8px;">
-          <img src="images/concept_field.jpg" alt="concept" style="width:100%;height:100%;object-fit:cover;object-position:center;">
-        </div>
       </div>
     </div>
   </section>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mainNav = document.getElementById('mainNav');
+    if (hamburger && mainNav) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mainNav.classList.toggle('open');
+      });
+      mainNav.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          mainNav.classList.remove('open');
+        });
+      });
+    }
+  </script>
 
   <!-- Footer -->
   <footer>

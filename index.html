@@ -713,11 +713,56 @@
     }
     .footer-copy { font-size: 10px; letter-spacing: 0.06em; }
 
+    /* ---- Hamburger ---- */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      margin-left: 16px;
+      flex-shrink: 0;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: #2d2d2d;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
     /* ---- Responsive ---- */
     @media (max-width: 768px) {
       .header-inner { padding: 0 20px; }
-      nav { gap: 20px; }
-      nav a { font-size: 10px; }
+      .hamburger { display: flex; }
+      nav {
+        display: none;
+        position: absolute;
+        top: 56px; left: 0; right: 0;
+        background: rgba(245, 244, 240, 0.98);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        flex-direction: column;
+        padding: 8px 20px 20px;
+        gap: 0;
+        border-bottom: 1px solid #d0cec9;
+        z-index: 99;
+      }
+      nav.open { display: flex; }
+      nav a {
+        padding: 13px 0;
+        font-size: 12px;
+        letter-spacing: 0.15em;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+        color: #444;
+      }
+      nav a:last-child { border-bottom: none; }
 
       .story-pair,
       .story-pair.reverse {
@@ -738,15 +783,34 @@
       }
       .voice-card { padding: 0 6vw; }
 
-      .join-grid { grid-template-columns: 1fr; gap: 2px; }
+      /* Join — 1カラム・オフセット解除 */
+      .join-photo-grid { grid-template-columns: 1fr; }
+      .join-photo-card:nth-child(2) { margin-top: 0 !important; }
+      .join-photo-panel { padding: 18px 20px; }
 
+      /* Vision */
+      #vision { padding-top: 120px !important; margin-top: -30px; }
+      .vision-body { font-size: 13px; }
+
+      /* ii-talk */
+      #ii-talk { padding: 60px 20px; }
+
+      /* Programs */
+      #programs { padding: 60px 20px !important; }
+
+      /* 共通パディング */
       .section-wrap,
-      #vision, #our-story, #events, #ii-talk, #join, #programs {
+      #our-story, #events, #join {
         padding-left: 20px;
         padding-right: 20px;
       }
+      #events .section-label,
+      #events .section-rule { padding: 0; }
 
-      footer { padding: 48px 20px; }
+      footer { padding: 48px 20px 40px; }
+      .footer-nav { gap: 20px; }
+      .footer-contact { flex-direction: column; gap: 16px; }
+      .footer-divider { display: none; }
     }
   </style>
 </head>
@@ -759,7 +823,7 @@
         <span class="logo-dot"></span>
         Homin_ii
       </a>
-      <nav>
+      <nav id="mainNav">
         <a href="#top">TOP</a>
         <a href="#vision">ABOUT</a>
         <a href="#events">INFO</a>
@@ -767,6 +831,9 @@
         <a href="#programs">MEMBER</a>
         <a href="#contact">CONTACT</a>
       </nav>
+      <button class="hamburger" id="hamburger" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
@@ -1222,6 +1289,23 @@
       'programsTrack', 'programsPrev', 'programsNext', 'programsDots',
       () => window.innerWidth <= 768 ? 1 : 3
     );
+
+    // ハンバーガーメニュー
+    (function() {
+      const hamburger = document.getElementById('hamburger');
+      const mainNav = document.getElementById('mainNav');
+      if (!hamburger || !mainNav) return;
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mainNav.classList.toggle('open');
+      });
+      mainNav.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          mainNav.classList.remove('open');
+        });
+      });
+    })();
 
     // お問い合わせフォーム（バリデーション付き）
     function handleContact(e) {
